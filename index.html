@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Seconds Party Zone Prank</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,0,128,0.8)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(0,255,255,0.9)); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 1.5s infinite ease-in-out;
+        }
+
+        /* Dynamic transition effects for disco background */
+        .disco-bg {
+            transition: background-color 0.05s linear;
+        }
+
+        /* Grid box dynamic animations */
+        .grid-box {
+            transition: transform 0.05s ease-in-out, background-color 0.05s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col justify-between font-sans overflow-hidden select-none">
+
+    <!-- Container for Main Interface -->
+    <div id="mainContainer" class="relative z-10 min-h-screen flex flex-col justify-between p-6">
+        
+        <!-- Header -->
+        <header class="text-center pt-8">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400">
+                পার্টি জোন ৩০ সেকেণ্ড! 🕺⚡
+            </h1>
+            <p class="text-slate-400 mt-2 text-sm md:text-base">
+                বাটন টিপে উপভোগ করুন ৩০ সেকেন্ডের হাই-এনার্জি লাইটিং ও মিউজিক!
+            </p>
+        </header>
+
+        <!-- Dynamic Visualizer Center Stage -->
+        <main class="flex-1 flex flex-col items-center justify-center my-6">
+            
+            <!-- Start State Card -->
+            <div id="startCard" class="bg-slate-900/80 backdrop-blur-md p-8 rounded-3xl border border-slate-800 text-center max-w-md w-full shadow-2xl animate-pulse-glow">
+                <div class="text-6xl mb-4">🪩🎉</div>
+                <h2 class="text-2xl font-bold mb-3 text-pink-400">রেডি আছেন তো?</h2>
+                <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                    নিচের স্টার্ট বাটনে ক্লিক করলে ৩০ সেকেন্ডের জন্য কালারফুল লাইটিং শো শুরু হবে।
+                </p>
+                <button id="startButton" onclick="startParty()" class="w-full py-4 px-8 bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 hover:from-pink-500 hover:to-cyan-400 text-white font-black text-xl rounded-2xl shadow-lg transform active:scale-95 transition-all duration-200 cursor-pointer">
+                    🔥 পার্টি শুরু করুন!
+                </button>
+            </div>
+
+            <!-- Active Party View (Hidden Initially) -->
+            <div id="partyView" class="hidden w-full max-w-xl flex-col items-center">
+                <!-- Timer Display -->
+                <div class="mb-6 bg-black/60 px-6 py-2 rounded-full border border-pink-500/50 shadow-lg">
+                    <span class="text-slate-300 text-sm">অবশিষ্ট সময়: </span>
+                    <span id="timerText" class="text-3xl font-black text-yellow-400 font-mono">30</span>
+                    <span class="text-slate-300 text-sm"> সেকেণ্ড</span>
+                </div>
+
+                <!-- Grid of Dancing Lights -->
+                <div id="lightGrid" class="grid grid-cols-4 gap-3 w-full h-64 p-4 bg-black/40 rounded-3xl border border-white/10 backdrop-blur-md">
+                    <div class="grid-box rounded-xl bg-pink-500"></div>
+                    <div class="grid-box rounded-xl bg-purple-500"></div>
+                    <div class="grid-box rounded-xl bg-cyan-500"></div>
+                    <div class="grid-box rounded-xl bg-yellow-500"></div>
+                    <div class="grid-box rounded-xl bg-green-500"></div>
+                    <div class="grid-box rounded-xl bg-red-500"></div>
+                    <div class="grid-box rounded-xl bg-indigo-500"></div>
+                    <div class="grid-box rounded-xl bg-orange-500"></div>
+                    <div class="grid-box rounded-xl bg-teal-500"></div>
+                    <div class="grid-box rounded-xl bg-blue-500"></div>
+                    <div class="grid-box rounded-xl bg-fuchsia-500"></div>
+                    <div class="grid-box rounded-xl bg-rose-500"></div>
+                </div>
+
+                <p class="text-xs text-center text-slate-200 font-bold mt-4 animate-pulse">
+                    ⚠️ প্রসেসিং চলছে... ৩০ সেকেন্ডের জন্য স্ক্রিন ব্লক থাকবে!
+                </p>
+            </div>
+
+            <!-- Completion / Prank Card (Hidden Initially) -->
+            <div id="resultCard" class="hidden bg-slate-900/90 backdrop-blur-md p-8 rounded-3xl border border-green-500/50 text-center max-w-md w-full shadow-2xl">
+                <div class="text-6xl mb-4">🤣🎉</div>
+                <h2 class="text-3xl font-black text-green-400 mb-2">প্র্যাংক সফল হয়েছে!</h2>
+                <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                    ৩০ সেকেণ্ড কিন্তু আপনার ফোন কোনো কাজ করেনি! এটি একটি ব্রাউজার প্র্যাংক/টেস্ট ছিল।
+                </p>
+                <button onclick="location.reload()" class="w-full py-3 px-6 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold rounded-xl transition cursor-pointer">
+                    🔄 আবার চেষ্টা করুন
+                </button>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-slate-500 pb-4">
+            GitHub Pages Ready • Single File Web App
+        </footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let audioCtx = null;
+        let audioInterval = null;
+
+        const colors = [
+            '#ff0055', '#00e5ff', '#ffbe0b', '#8338ec', '#3a86ff', 
+            '#06d6a0', '#ff006e', '#fb5607', '#70e000', '#ccff00'
+        ];
+
+        // Web Audio API Synthesizer for Disco Beat Effects
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSynthesizedSynthTone() {
+            if (!audioCtx) return;
+
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                const types = ['sawtooth', 'square', 'triangle'];
+                osc.type = types[Math.floor(Math.random() * types.length)];
+                
+                const freqs = [150, 300, 450, 600, 800, 1200];
+                osc.frequency.setValueAtTime(freqs[Math.floor(Math.random() * freqs.length)], audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.15);
+            } catch (e) {
+                console.error("Audio synth error", e);
+            }
+        }
+
+        // Main Function
+        function startParty() {
+            initAudio();
+
+            // UI state change
+            document.getElementById('startCard').classList.add('hidden');
+            document.getElementById('partyView').classList.remove('hidden');
+            document.getElementById('partyView').classList.add('flex');
+
+            const timerText = document.getElementById('timerText');
+            const gridBoxes = document.querySelectorAll('.grid-box');
+            const body = document.body;
+
+            const startTime = Date.now();
+            const freezeDuration = 30 * 1000; // 30 Seconds
+
+            // High energy sound loop
+            audioInterval = setInterval(() => {
+                playSynthesizedSynthTone();
+            }, 120);
+
+            // Synchronous visual & blocking loop
+            const runPartyLoop = () => {
+                const now = Date.now();
+                const elapsed = now - startTime;
+
+                if (elapsed >= freezeDuration) {
+                    // Party Finished
+                    clearInterval(audioInterval);
+                    document.getElementById('partyView').classList.add('hidden');
+                    document.getElementById('resultCard').classList.remove('hidden');
+                    body.style.backgroundColor = '#020617'; // Reset to dark theme
+                    return;
+                }
+
+                // Update timer
+                const timeLeft = Math.ceil((freezeDuration - elapsed) / 1000);
+                timerText.innerText = timeLeft;
+
+                // Random dancing lights for background
+                body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                // Random dancing lights for grid shapes
+                gridBoxes.forEach(box => {
+                    box.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    box.style.transform = `scale(${0.85 + Math.random() * 0.3})`;
+                });
+
+                // Heavy Synchronous CPU Loop to freeze touch/interaction
+                // Locks the main thread for ~45ms on every frame
+                const blockUntil = Date.now() + 45;
+                while (Date.now() < blockUntil) {
+                    Math.sqrt(Math.random() * 1000000);
+                }
+
+                // Call next frame
+                setTimeout(runPartyLoop, 10);
+            };
+
+            // Kick off party loop
+            runPartyLoop();
+        }
+    </script>
+</body>
+                  </html>
